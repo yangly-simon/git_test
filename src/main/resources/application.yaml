@@ -1,0 +1,10 @@
+server:
+  port: 8081
+spring:
+  application:
+    name:mysql
+  datasource:
+#    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/greenroad_demo?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: root
+    password: root
