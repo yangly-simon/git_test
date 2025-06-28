@@ -105,12 +105,32 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         if (updated.getDaiKuan() != null) existing.setDaiKuan(updated.getDaiKuan());
         return Result.ok(userMapper.updateStudentInfo(existing) > 0);
 
+    }
 
-
-
+    @Override
+    public Result passwordRetrieve(String phone,String user){
+        // 查询数据库，看是否有匹配记录
+        Student stu = userMapper.findStuByIdNUm(user);
+        System.out.println(user+phone);
+        if (stu == null) {
+            return Result.fail("学生不存在");
+        }
+        else if (stu.getPhone().equals(phone)) {
+            return Result.ok(1);
+        }
+        else return Result.ok(0);
     }
 
 
+    @Override
+    public Result passwordReset(String password,String idNum){
+        Student stu = userMapper.findStuByIdNUm(idNum);
+        stu.setPassword(password);
+        if (userMapper.updateStudentInfo(stu) > 0)
+            return Result.ok("修改成功");
+        else return Result.fail("修改失败");
+
+    }
     ////////////////////////////////////////////////////////////////////////
 
     @Override

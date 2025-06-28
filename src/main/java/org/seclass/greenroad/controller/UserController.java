@@ -45,6 +45,21 @@ public class UserController {
         return userService.updateStudentInfo(student);
     }
 
+    @ResponseBody
+    @GetMapping("/passwordretrieve")
+    public Result passwordRetrieve(@RequestParam("phone") String phone,@RequestParam("user")String user){
+//        System.out.println("phone:"+phone+",user:"+user);
+        return userService.passwordRetrieve(phone,user);
+    }
+
+    @ResponseBody
+    @GetMapping("/passwordreset")
+    public Result passwordReset(@RequestParam("password") String password,@RequestParam("idNum") String idNum){
+        return userService.passwordReset(password,idNum);
+    }
+
+
+
 
 
 
@@ -61,33 +76,12 @@ public class UserController {
 //        return userService.updateUser(user);
 //    }
 
-    // 处理支付请求
-    @ResponseBody
-    @GetMapping("/pay")
-    public Result processPayment(@RequestParam int userId,@RequestParam int bookId, @RequestParam double amount) {
-        return userService.deductBalance(userId,amount);
-    }
-
-
     @ResponseBody
     @GetMapping("/getUserInfoByUserId")
     public Result getUserInfoByUserId(@RequestParam("userId") int userId){
         return userService.getUserInfoByUserId(userId);
     }
 
-    // 处理支付请求
-    @ResponseBody
-    @GetMapping("/getUserParse")
-    public Result getUserParse(@RequestParam int userId) {
-        return userService.getUserParse(userId);
-    }
-
-    @ResponseBody
-    @GetMapping("/up")
-    public Result up(@RequestParam int userId,@RequestParam double amount) {
-        System.out.println("接收到的参数: " + userId+amount);
-        return userService.up(userId,amount);
-    }
 
     @ResponseBody
     @GetMapping("/logOff")

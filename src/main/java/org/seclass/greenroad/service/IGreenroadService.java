@@ -8,6 +8,6 @@ import org.seclass.greenroad.entity.Greenroad;
 import org.seclass.greenroad.entity.Student;
 import org.seclass.greenroad.entity.User;
 public interface IGreenroadService extends IService<Greenroad> {
-
-
+    Result setGreenroad(Greenroad greenroad);
+//    boolean updateGreenroad(Greenroad greenroad, Long userId) throws UnauthorizedException;
 }

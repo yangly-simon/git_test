@@ -27,10 +27,10 @@ public interface UserMapper extends BaseMapper<User> {
     @Select("SELECT * FROM greenroad_demo.student WHERE id_num = #{user}")
     Student findStuByIdNUm(String user);
 
-    // 根据账号查询用户
+    // 根据账号查询
     @Select("SELECT * FROM greenroad_demo.academy WHERE user = #{user}")
     Academy findAcademyByUser(String user);
-    // 根据账号查询用户
+    // 根据账号查询
     @Select("SELECT * FROM greenroad_demo.college WHERE user = #{user}")
     College findCollegeByUser(String user);
 
@@ -53,18 +53,6 @@ public interface UserMapper extends BaseMapper<User> {
 
     @Update("UPDATE greenroad_demo.users SET phone = #{phone}, campus = #{campus}, email = #{email}, name = #{name},password=#{password} WHERE phone = #{phone}")
     int updateUser(User user);  // 返回影响的行数
-
-    // 查询用户余额
-    @Select("SELECT balance FROM greenroad_demo.users WHERE id = #{userId}")
-    Double getUserBalance(@Param("userId") int userId);
-
-    // 扣减用户余额
-    @Update("UPDATE greenroad_demo.users SET balance = balance - #{amount} WHERE id = #{userId} AND balance >= #{amount}")
-    int deductBalance(@Param("userId") int userId, @Param("amount") double amount);
-
-    // 充钱
-    @Update("UPDATE greenroad_demo.users SET balance = balance + #{amount} WHERE id = #{userId}")
-    int up(@Param("userId") int userId, @Param("amount") double amount);
 
     // 更新用户状态（注销）
     @Delete("DELETE FROM greenroad_demo.users WHERE phone = #{phone}")

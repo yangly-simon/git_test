@@ -16,8 +16,9 @@ public interface IUserService extends IService<User> {
 
     Result updateStudentInfo(Student student);
 
+    Result passwordRetrieve(String phone,String user);
 
-
+    Result passwordReset(String password,String idNum);
 
 
 
